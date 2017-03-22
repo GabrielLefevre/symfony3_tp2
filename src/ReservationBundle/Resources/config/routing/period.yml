@@ -1,0 +1,24 @@
+period_index:
+    path:     /
+    defaults: { _controller: "ReservationBundle:Period:index" }
+    methods:  GET
+
+period_show:
+    path:     /{id}/show/
+    defaults: { _controller: "ReservationBundle:Period:show" }
+    methods:  GET
+
+period_new:
+    path:     /new/
+    defaults: { _controller: "ReservationBundle:Period:new" }
+    methods:  [GET, POST]
+
+period_edit:
+    path:     /{id}/edit/
+    defaults: { _controller: "ReservationBundle:Period:edit" }
+    methods:  [GET, PUT]
+
+period_delete:
+    path:     /{id}/delete/
+    defaults: { _controller: "ReservationBundle:Period:delete" }
+    methods:  DELETE

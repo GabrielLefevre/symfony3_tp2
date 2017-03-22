@@ -1,0 +1,25 @@
+{% block body %}
+<table>
+    <tbody>
+        <tr>
+            <td>ID:</td>
+            <td>{{ period.id }}</td>
+        </tr>
+        <tr>
+            <td>Start:</td>
+            <td>{{ period.start|date('Y-m-d-h-m') }}</td>
+        </tr>
+        <tr>
+            <td>End:</td>
+            <td>{{ period.end|date('Y-m-d-h-m') }}</td>
+        </tr>
+    </tbody>
+</table>
+{{ form_start(delete_form) }}
+    <input type="submit" value="delete"></input>
+{{ form_end(delete_form) }}
+
+    <a href="{{ path('period_index') }}">Back to the list</a>
+    </br>
+    <a href="{{ path('period_edit', { 'id': period.id }) }}" >Edit</a>
+{% endblock %}

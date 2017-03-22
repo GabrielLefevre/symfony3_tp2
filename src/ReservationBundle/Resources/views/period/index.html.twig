@@ -1,0 +1,26 @@
+    {% block body %}
+    <h3 >Period</h3>
+    <a href="{{ path(  'period_new' )}}">create a new period</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for per in period %}
+                <tr>
+                <td>
+                <a href="{{ path('period_edit', { 'id': per.id }) }}"></a>
+                <a href="{{ path('period_show', { 'id': per.id}) }}" ></a>
+                </td>
+                <td><a href="{{ path('period_show', { 'id': per.id }) }}">{{ per.id }}</a></td>
+                <td>{{ per.start|date('Y-m-d') }}</td>
+                <td>{{ per.end|date('Y-m-d') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
