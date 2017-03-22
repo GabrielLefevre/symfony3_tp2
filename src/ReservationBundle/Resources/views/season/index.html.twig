@@ -1,0 +1,26 @@
+{% block body %}
+    <h3 >Season</h3>
+    <a href="{{ path(  'season_new' )}}">create a new season</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Increase</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sea in season %}
+            <tr>
+                <td>
+                    <a href="{{ path('season_edit', { 'id': sea.id }) }}"></a>
+                    <a href="{{ path('season_show', { 'id': sea.id}) }}" ></a>
+                </td>
+                <td><a href="{{ path('season_show', { 'id': sea.id }) }}">{{ sea.id }}</a></td>
+                <td>{{ sea.name }}</td>
+                <td>{{ sea.increase }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

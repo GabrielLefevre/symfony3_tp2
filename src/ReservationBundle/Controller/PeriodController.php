@@ -59,7 +59,6 @@ class PeriodController extends Controller
 
     public function editAction(Request $request, Period $period)
     {
-
         $deleteForm = $this->createDeleteForm($period);
         $editForm = $this->createForm('ReservationBundle\Form\PeriodType', $period, array(
             'method' => "PUT"));
@@ -74,12 +73,26 @@ class PeriodController extends Controller
                 return $this->redirectToRoute('period_show', array('id' => $periodEvent->getPeriod()->getId()));
             }
         }
-
-        return $this->render('period/edit.html.twig', array(
+        return $this->render('@ReservationBundle/Resources/views/period/edit.html.twig', array(
             'period' => $period,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+
+
+    public function deleteAction(Request $request, Period $period)
+    {
+        $form = $this->createDeleteForm($period);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $periodEvent = $this->get('app.event.period');
+            $periodEvent->setPeriod($period);
+            $dispatcher = $this->get('event_dispatcher');
+            $dispatcher->dispatch(GlobalEvents::PERIOD_DELETE, $periodEvent);
+
+        }
+        return $this->redirectToRoute('period_index');
     }
 
 

@@ -1,0 +1,25 @@
+{% block body %}
+    <table>
+        <tbody>
+        <tr>
+            <td>ID:</td>
+            <td>{{ season.id }}</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>{{ season.name }}</td>
+        </tr>
+        <tr>
+            <td>Increase:</td>
+            <td>{{ season.increase }}</td>
+        </tr>
+        </tbody>
+    </table>
+    {{ form_start(delete_form) }}
+    <input type="submit" value="delete"></input>
+    {{ form_end(delete_form) }}
+
+    <a href="{{ path('season_index') }}">Back to the list</a>
+    </br>
+    <a href="{{ path('season_edit', { 'id': season.id }) }}" >Edit</a>
+{% endblock %}

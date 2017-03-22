@@ -1,10 +1,23 @@
 services:
+#ENTITY
     app.entity.period:
         class: ReservationBundle\Entity\Period
+    app.entity.season:
+        class: ReservationBundle\Entity\Season
+#EVENT
     app.event.period:
         class: ReservationBundle\Event\PeriodEvent
+    app.event.season:
+        class: ReservationBundle\Event\SeasonEvent
+#SUBSCRIBER
     app.period_subscriber:
         class: ReservationBundle\EventSubscriber\PeriodSubscriber
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: kernel.event_subscriber }
+    app.season_subscriber:
+        class: ReservationBundle\EventSubscriber\SeasonSubscriber
         arguments:
             - '@doctrine.orm.entity_manager'
         tags:

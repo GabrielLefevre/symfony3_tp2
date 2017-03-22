@@ -1,0 +1,24 @@
+season_index:
+    path:     /
+    defaults: { _controller: "ReservationBundle:Season:index" }
+    methods:  GET
+
+season_show:
+    path:     /{id}/show/
+    defaults: { _controller: "ReservationBundle:Season:show" }
+    methods:  GET
+
+season_new:
+    path:     /new/
+    defaults: { _controller: "ReservationBundle:Season:new" }
+    methods:  [GET, POST]
+
+season_edit:
+    path:     /{id}/edit/
+    defaults: { _controller: "ReservationBundle:Season:edit" }
+    methods:  [GET, PUT]
+
+season_delete:
+    path:     /{id}/delete/
+    defaults: { _controller: "ReservationBundle:Season:delete" }
+    methods:  DELETE

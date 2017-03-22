@@ -10,4 +10,7 @@
     <import
             resource="@ReservationBundle/Resources/config/routing/period.yml"
             prefix="/period" />
+    <import
+            resource="@ReservationBundle/Resources/config/routing/season.yml"
+            prefix="/season" />
 </routes>

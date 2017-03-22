@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="period")
  * @ORM\Entity(repositoryClass="ReservationBundle\Repository\PeriodRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Period
 {
@@ -35,6 +36,12 @@ class Period
      */
     private $end;
 
+
+    /**
+     *@ORM\Column(type="string", length=255, nullable=true)
+     *
+     */
+    private $stringPeriod;
 
     /**
      * Get id
@@ -94,11 +101,30 @@ class Period
         return $this->end;
     }
 
-    function __toString()
+    /**
+     * @return mixed
+     */
+    public function getStringPeriod()
     {
-        return $this->start." ".$this->end;
+        return $this->stringPeriod;
     }
 
+    /**
+     * @param mixed $stringPeriod
+     */
+    public function setStringPeriod($stringPeriod)
+    {
+        $this->stringPeriod = $stringPeriod;
+    }
+
+
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function convert() {
+        $this->stringPeriod = $this->start->format('Y/m/d H:i')." ".$this->end->format('Y/m/d H:i');
+    }
 
 }
 
