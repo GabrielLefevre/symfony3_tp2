@@ -4,11 +4,19 @@ services:
         class: ReservationBundle\Entity\Period
     app.entity.season:
         class: ReservationBundle\Entity\Season
+    app.entity.package:
+            class: ReservationBundle\Entity\Package
+    app.entity.booking:
+            class: ReservationBundle\Entity\Booking
 #EVENT
     app.event.period:
         class: ReservationBundle\Event\PeriodEvent
     app.event.season:
         class: ReservationBundle\Event\SeasonEvent
+    app.event.package:
+        class: ReservationBundle\Event\PackageEvent
+    app.event.booking:
+        class: ReservationBundle\Event\BookingEvent
 #SUBSCRIBER
     app.period_subscriber:
         class: ReservationBundle\EventSubscriber\PeriodSubscriber
@@ -18,6 +26,18 @@ services:
             - { name: kernel.event_subscriber }
     app.season_subscriber:
         class: ReservationBundle\EventSubscriber\SeasonSubscriber
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: kernel.event_subscriber }
+    app.package_subscriber:
+        class: ReservationBundle\EventSubscriber\PackageSubscriber
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: kernel.event_subscriber }
+    app.booking_subscriber:
+        class: ReservationBundle\EventSubscriber\BookingSubscriber
         arguments:
             - '@doctrine.orm.entity_manager'
         tags:

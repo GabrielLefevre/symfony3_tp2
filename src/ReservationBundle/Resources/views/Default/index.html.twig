@@ -1,1 +1,9 @@
-Hello World!
+{% block body %}
+    <h3 >ReservationBundle</h3>
+    <a href="{{ path('package_index') }}">Package list</a></br>
+    <a href="{{ path('period_index') }}">Period list</a></br>
+    <a href="{{ path('season_index') }}">Season list</a></br>
+    </br>
+    <a href="{{ path('booking_index') }}">Booking list</a></br>
+
+{% endblock %}

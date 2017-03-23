@@ -1,0 +1,25 @@
+{% block body %}
+    <table>
+        <tbody>
+        <tr>
+            <td>ID:</td>
+            <td>{{ booking.id }}</td>
+        </tr>
+        <tr>
+            <td>Date start:</td>
+            <td>{{ booking.datestart|date('Y/m/d H:i') }}</td>
+        </tr>
+        <tr>
+            <td>Package:</td>
+            <td>{{ booking.package }}</td>
+        </tr>
+        </tbody>
+    </table>
+    {{ form_start(delete_form) }}
+    <input type="submit" value="delete"></input>
+    {{ form_end(delete_form) }}
+
+    <a href="{{ path('booking_index') }}">Back to the list</a>
+    </br>
+    <a href="{{ path('booking_edit', { 'id': booking.id }) }}" >Edit</a>
+{% endblock %}

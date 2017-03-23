@@ -1,0 +1,24 @@
+package_index:
+    path:     /
+    defaults: { _controller: "ReservationBundle:Package:index" }
+    methods:  GET
+
+package_show:
+    path:     /{id}/show/
+    defaults: { _controller: "ReservationBundle:Package:show" }
+    methods:  GET
+
+package_new:
+    path:     /new/
+    defaults: { _controller: "ReservationBundle:Package:new" }
+    methods:  [GET, POST]
+
+package_edit:
+    path:     /{id}/edit/
+    defaults: { _controller: "ReservationBundle:Package:edit" }
+    methods:  [GET, PUT]
+
+package_delete:
+    path:     /{id}/delete/
+    defaults: { _controller: "ReservationBundle:Package:delete" }
+    methods:  DELETE

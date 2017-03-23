@@ -1,0 +1,29 @@
+{% block body %}
+    <table>
+        <tbody>
+        <tr>
+            <td>ID:</td>
+            <td>{{ package.id }}</td>
+        </tr>
+        <tr>
+            <td>UnitTime:</td>
+            <td>{{ package.timeunit }}</td>
+        </tr>
+        <tr>
+            <td>NumberUnit:</td>
+            <td>{{ package.numberunit }}</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td>{{ package.price }}</td>
+        </tr>
+        </tbody>
+    </table>
+    {{ form_start(delete_form) }}
+    <input type="submit" value="delete">
+    {{ form_end(delete_form) }}
+
+    <a href="{{ path('package_index') }}">Back to the list</a>
+    </br>
+    <a href="{{ path('package_edit', { 'id': package.id }) }}" >Edit</a>
+{% endblock %}

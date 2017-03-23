@@ -3,6 +3,7 @@
 namespace ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Season
@@ -25,6 +26,14 @@ class Season
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     *
+     * @Assert\Type("string")
+     * @Assert\NotBlank(message="not blank")
+     * @Assert\Length(
+     *     min=3,
+     *     max=50,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.")
      */
     private $name;
 
@@ -32,6 +41,14 @@ class Season
      * @var float
      *
      * @ORM\Column(name="increase", type="float")
+     *
+     * @Assert\Type("float")
+     *  @Assert\Range(
+     *      min = -1000,
+     *      max = 1000,
+     *      minMessage = " min: {{ limit }} % ",
+     *      maxMessage = "max: {{ limit }} %"
+     * )
      */
     private $increase;
 

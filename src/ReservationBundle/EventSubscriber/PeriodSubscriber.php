@@ -8,7 +8,6 @@
 
 namespace ReservationBundle\EventSubscriber;
 
-use ReservationBundle\Entity\Period;
 use ReservationBundle\GlobalEvents;
 use Doctrine\ORM\EntityManager;
 use ReservationBundle\Event\PeriodEvent;

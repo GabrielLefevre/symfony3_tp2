@@ -3,6 +3,7 @@
 namespace ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Package
@@ -25,6 +26,14 @@ class Package
      * @var string
      *
      * @ORM\Column(name="timeunit", type="string", length=255)
+     *
+     * @Assert\Type("string")
+     * @Assert\NotBlank(message="not blank")
+     * @Assert\Length(
+     *     min=3,
+     *     max=40,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.")
      */
     private $timeunit;
 
@@ -32,6 +41,15 @@ class Package
      * @var int
      *
      * @ORM\Column(name="numberunit", type="integer")
+     *
+     * @Assert\Type("integer")
+     * @Assert\NotNull()
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 25,
+     *      minMessage = " min: {{ limit }}",
+     *      maxMessage = "max: {{ limit }}"
+     * )
      */
     private $numberunit;
 
@@ -39,6 +57,8 @@ class Package
      * @var float
      *
      * @ORM\Column(name="price", type="float")
+     *
+     * @Assert\Type("float")
      */
     private $price;
 
@@ -124,5 +144,12 @@ class Package
     {
         return $this->price;
     }
+
+    function __toString()
+    {
+        return $this->numberunit." ".$this->timeunit;
+    }
+
+
 }
 

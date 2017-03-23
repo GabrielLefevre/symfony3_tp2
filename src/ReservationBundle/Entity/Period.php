@@ -3,6 +3,7 @@
 namespace ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Period
@@ -26,6 +27,8 @@ class Period
      * @var \DateTime
      *
      * @ORM\Column(name="start", type="datetime")
+     *
+     *  @Assert\DateTime()
      */
     private $start;
 
@@ -33,6 +36,8 @@ class Period
      * @var \DateTime
      *
      * @ORM\Column(name="end", type="datetime")
+     *
+     * @Assert\DateTime()
      */
     private $end;
 
@@ -40,6 +45,8 @@ class Period
     /**
      *@ORM\Column(type="string", length=255, nullable=true)
      *
+     * @Assert\Type("string")
+     * @Assert\NotBlank(message="not blank")
      */
     private $stringPeriod;
 

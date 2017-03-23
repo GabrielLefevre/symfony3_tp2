@@ -1,0 +1,29 @@
+{% block body %}
+    <h3 >Package</h3>
+    <a href="{{ path(  'package_new' )}}">create a new package</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>UnitTime</th>
+            <th>NumberUnit</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pac in package %}
+            <tr>
+                <td>
+                    <a href="{{ path('package_edit', { 'id': pac.id }) }}"></a>
+                    <a href="{{ path('package_show', { 'id': pac.id}) }}" ></a>
+                </td>
+                <td><a href="{{ path('package_show', { 'id': pac.id }) }}">{{ pac.id }}</a></td>
+                <td>{{ pac.timeunit }}</td>
+                <td>{{ pac.numberunit }}</td>
+                <td>{{ pac.price }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('default_index') }}">Index</a></br>
+{% endblock %}

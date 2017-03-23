@@ -1,0 +1,4 @@
+default_index:
+    path:     /
+    defaults: { _controller: "ReservationBundle:Default:index" }
+    methods:  GET

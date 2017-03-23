@@ -1,0 +1,29 @@
+{% block body %}
+    <h3 >Booking</h3>
+    <a href="{{ path(  'booking_new' )}}">create a new booking</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>dateStart</th>
+            <th>Package</th>
+            <th>Summation</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for boo in booking %}
+            <tr>
+                <td>
+                    <a href="{{ path('booking_edit', { 'id': boo.id }) }}"></a>
+                    <a href="{{ path('booking_show', { 'id': boo.id}) }}" ></a>
+                </td>
+                <td><a href="{{ path('booking_show', { 'id': boo.id }) }}">{{ boo.id }}</a></td>
+                <td>{{ boo.dateStart }}</td>
+                <td>{{ boo.package }}</td>
+                <td>WIP</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('default_index') }}">Index</a></br>
+{% endblock %}

@@ -5,6 +5,7 @@ namespace ReservationBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class BookingType extends AbstractType
 {
@@ -13,7 +14,13 @@ class BookingType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('summation')        ;
+        $builder
+            ->add('datestart')
+            ->add('package', EntityType::class, array(
+                'class' => 'ReservationBundle:Package'
+         ));
+
+        // WIP summation
     }
     
     /**

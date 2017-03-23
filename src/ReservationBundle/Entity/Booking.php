@@ -3,6 +3,7 @@
 namespace ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Booking
@@ -22,11 +23,13 @@ class Booking
     private $id;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="date_start", type="datetime")
+     *
+     *  @Assert\DateTime()
      */
-    private $name;
+    private $datestart;
 
     /**
      * @var \stdClass
@@ -37,6 +40,16 @@ class Booking
      * @ORM\JoinColumn(name="summation", referencedColumnName="id")
      */
     private $summation;
+
+    /**
+     * @var \stdClass
+     *
+     * @ORM\Column(name="package", type="object")
+     *
+     * @ORM\ManyToOne(targetEntity="ReservationBundle\Entity\Package")
+     * @ORM\JoinColumn(name="package", referencedColumnName="id")
+     */
+    private $package;
 
 
     /**
@@ -52,25 +65,25 @@ class Booking
     /**
      * Set name
      *
-     * @param string $name
+     * @param \DateTime $datestart
      *
      * @return Booking
      */
-    public function setName($name)
+    public function setDatestart($datestart)
     {
-        $this->name = $name;
+        $this->datestart = $datestart;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get datestart
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getName()
+    public function getDatestart()
     {
-        return $this->name;
+        return $this->datestart;
     }
 
     /**
@@ -96,5 +109,23 @@ class Booking
     {
         return $this->summation;
     }
+
+    /**
+     * @return \stdClass
+     */
+    public function getPackage()
+    {
+        return $this->package;
+    }
+
+    /**
+     * @param \stdClass $package
+     */
+    public function setPackage($package)
+    {
+        $this->package = $package;
+    }
+
+
 }
 
