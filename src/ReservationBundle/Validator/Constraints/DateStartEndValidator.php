@@ -10,11 +10,7 @@ namespace ReservationBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use ReservationBundle\Entity\Period;
 
-/**
- * @Annotation
- */
 class DateStartEndValidator extends ConstraintValidator
 {
     public function validate($protocol, Constraint $constraint) {

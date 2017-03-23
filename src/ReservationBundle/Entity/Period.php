@@ -14,6 +14,7 @@ use ReservationBundle\Validator\Constraints as PeriodAssert;
  * @ORM\HasLifecycleCallbacks()
  *
  * @PeriodAssert\DateStartEnd
+ * @PeriodAssert\Period
  *
  */
 class Period

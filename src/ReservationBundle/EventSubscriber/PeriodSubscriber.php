@@ -24,7 +24,7 @@ class PeriodSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            GlobalEvents::PERIOD_ADD => array('verifPeriod', 250),
+            GlobalEvents::PERIOD_ADD => array('periodAdd', 250),
             GlobalEvents::PERIOD_EDIT =>array('periodAdd', 250),
             GlobalEvents::PERIOD_DELETE =>array('periodDelete', 250)
         );
