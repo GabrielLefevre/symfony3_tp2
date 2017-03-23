@@ -4,6 +4,7 @@ namespace ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ReservationBundle\Validator\Constraints as PeriodAssert;
 
 /**
  * Period
@@ -11,6 +12,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="period")
  * @ORM\Entity(repositoryClass="ReservationBundle\Repository\PeriodRepository")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @PeriodAssert\DateStartEnd
+ *
  */
 class Period
 {
@@ -40,15 +44,6 @@ class Period
      * @Assert\DateTime()
      */
     private $end;
-
-
-    /**
-     *@ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Assert\Type("string")
-     * @Assert\NotBlank(message="not blank")
-     */
-    private $stringPeriod;
 
     /**
      * Get id
@@ -108,29 +103,9 @@ class Period
         return $this->end;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getStringPeriod()
+    function __toString()
     {
-        return $this->stringPeriod;
-    }
-
-    /**
-     * @param mixed $stringPeriod
-     */
-    public function setStringPeriod($stringPeriod)
-    {
-        $this->stringPeriod = $stringPeriod;
-    }
-
-
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function convert() {
-        $this->stringPeriod = $this->start->format('Y/m/d H:i')." ".$this->end->format('Y/m/d H:i');
+        return $this->start->format('Y/m/d')."   ".$this->end->format('Y/m/d')." ";
     }
 
 }

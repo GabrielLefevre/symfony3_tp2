@@ -24,7 +24,7 @@ class PeriodSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            GlobalEvents::PERIOD_ADD => array('periodAdd', 250),
+            GlobalEvents::PERIOD_ADD => array('verifPeriod', 250),
             GlobalEvents::PERIOD_EDIT =>array('periodAdd', 250),
             GlobalEvents::PERIOD_DELETE =>array('periodDelete', 250)
         );
@@ -39,5 +39,17 @@ class PeriodSubscriber implements EventSubscriberInterface
         $this->em->remove($event->getPeriod());
         $this->em->flush($event->getPeriod());
     }
+
+    public function verifPeriod(PeriodEvent $event) {
+        $allPeriod = $this->em->getRepository('ReservationBundle:Period')->findAll();
+        for( $i=0; $i<count($allPeriod);$i++) {
+            if ($event->getPeriod()->getStart() >= $allPeriod[$i]->getStart() && $event->getPeriod()->getStart() <= $allPeriod[$i]->getEnd() || $event->getPeriod()->getEnd() >= $allPeriod[$i]->getStart() && $event->getPeriod()->getEnd() <= $allPeriod[$i]->getEnd() || $allPeriod[$i]->getStart() >= $event->getPeriod()->getStart() && $allPeriod[$i]->getStart() <= $event->getPeriod()->getEnd() || $allPeriod[$i]->getEnd() >= $event->getPeriod()->getStart() && $allPeriod[$i]->getEnd()<= $event->getPeriod()->getEnd()) {
+                echo(" dedans ");
+            } else {
+                echo (" dehors ");
+            }
+        }
+        die;
+    } // verifPeriod
 
 }

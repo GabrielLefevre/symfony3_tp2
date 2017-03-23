@@ -42,3 +42,8 @@ services:
             - '@doctrine.orm.entity_manager'
         tags:
             - { name: kernel.event_subscriber }
+#VALIDATOR
+    app.datestartend_validator:
+        class: Reservation\Validator\Constraints\DateStartEndValidator
+        tags:
+            - { name: validator.constraint_validator }

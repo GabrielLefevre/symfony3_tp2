@@ -17,7 +17,7 @@ class SeasonType extends AbstractType
         $builder
             ->add('name')
             ->add('increase')
-            ->add('period', EntityType::class, array('class'=>'ReservationBundle:Period', 'choice_label'=>'string_period', 'multiple'=>true, 'expanded' => true));
+            ->add('period', EntityType::class, array('class'=>'ReservationBundle:Period', 'multiple'=>true, 'expanded' => true));
     }
     
     /**

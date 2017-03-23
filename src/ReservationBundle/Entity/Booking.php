@@ -36,7 +36,7 @@ class Booking
      *
      * @ORM\Column(name="summation", type="object")
      *
-     * @ORM\OneToOne(targetEntity="ReservationBundle\Entity\Summation")
+     * @ORM\OneToOne(targetEntity="ReservationBundle\Entity\Summation", cascade={"persist", "merge"})
      * @ORM\JoinColumn(name="summation", referencedColumnName="id")
      */
     private $summation;

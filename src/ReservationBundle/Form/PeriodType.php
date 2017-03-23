@@ -5,6 +5,7 @@ namespace ReservationBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class PeriodType extends AbstractType
 {
@@ -14,8 +15,12 @@ class PeriodType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('start')
-            ->add('end');
+            ->add('start', DateTimeType::class, array(
+                'widget' => 'choice',
+            ))
+            ->add('end', DateTimeType::class, array(
+                'widget' => 'choice',
+            ));
     }
     
     /**
