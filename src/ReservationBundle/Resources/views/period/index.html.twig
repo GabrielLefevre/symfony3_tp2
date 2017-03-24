@@ -7,6 +7,7 @@
                 <th>ID</th>
                 <th>Start</th>
                 <th>End</th>
+                <th>Season</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,7 @@
                 <td><a href="{{ path('period_show', { 'id': per.id }) }}">{{ per.id }}</a></td>
                 <td>{{ per.start|date('Y/m/d H:i') }}</td>
                 <td>{{ per.end|date('Y/m/d H:i') }}</td>
+                    <td>{{ per.season }}</td>
                 </tr>
             {% endfor %}
         </tbody>

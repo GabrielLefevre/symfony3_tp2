@@ -12,6 +12,7 @@ namespace ReservationBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ReservationBundle\GlobalEvents;
 use ReservationBundle\Entity\Booking;
+use ReservationBundle\Entity\Summation;
 use Symfony\Component\HttpFoundation\Request;
 
 class BookingController extends Controller
@@ -34,6 +35,7 @@ class BookingController extends Controller
         if($request->getMethod()=== "POST") {
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
+
                 $bookingEvent = $this->get('app.event.booking');
                 $bookingEvent -> setBooking($booking);
                 $dispatcher = $this->get('event_dispatcher');

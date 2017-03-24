@@ -32,14 +32,21 @@ class Booking
     private $datestart;
 
     /**
-     * @var \stdClass
+     * @var \DateTime
      *
-     * @ORM\Column(name="summation", type="object")
+     * @ORM\Column(name="date_end", type="datetime")
      *
-     * @ORM\OneToOne(targetEntity="ReservationBundle\Entity\Summation", cascade={"persist", "merge"})
-     * @ORM\JoinColumn(name="summation", referencedColumnName="id")
+     *  @Assert\DateTime()
      */
-    private $summation;
+    private $dateend;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="pricefinal", type="float")
+     *
+     */
+    private $pricefinal;
 
     /**
      * @var \stdClass
@@ -87,28 +94,37 @@ class Booking
     }
 
     /**
-     * Set summation
-     *
-     * @param \stdClass $summation
-     *
-     * @return Booking
+     * @return \DateTime
      */
-    public function setSummation($summation)
+    public function getDateend()
     {
-        $this->summation = $summation;
-
-        return $this;
+        return $this->dateend;
     }
 
     /**
-     * Get summation
-     *
-     * @return \stdClass
+     * @param \DateTime $dateend
      */
-    public function getSummation()
+    public function setDateend($dateend)
     {
-        return $this->summation;
+        $this->dateend = $dateend;
     }
+
+    /**
+     * @return float
+     */
+    public function getPricefinal()
+    {
+        return $this->pricefinal;
+    }
+
+    /**
+     * @param float $pricefinal
+     */
+    public function setPricefinal($pricefinal)
+    {
+        $this->pricefinal = $pricefinal;
+    }
+
 
     /**
      * @return \stdClass

@@ -25,15 +25,24 @@ class BookingSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            GlobalEvents::BOOKING_ADD => array('bookingAdd', 250),
+            GlobalEvents::BOOKING_ADD => array(
+                array('calculPrice', 10),
+                array('bookingAdd', 9)
+            ),
             GlobalEvents::BOOKING_EDIT =>array('bookingAdd', 250),
             GlobalEvents::BOOKING_DELETE =>array('bookingDelete', 250)
         );
     }
 
+    public function calculPrice(BookingEvent $event) {
+        die("calcul");
+    }
+
+
     public function bookingAdd (BookingEvent $event) {
-        $this->em->persist($event->getBooking());
-        $this->em->flush();
+       die ("add");
+        // $this->em->persist($event->getBooking());
+        //$this->em->flush();
     }
 
     public function bookingDelete( BookingEvent $event) {

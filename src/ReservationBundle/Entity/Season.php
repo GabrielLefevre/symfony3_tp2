@@ -53,16 +53,6 @@ class Season
     private $increase;
 
     /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="period", type="object")
-     *
-     * @ORM\OneToMany(targetEntity="ReservationBundle\Entity\Period", mappedBy="season")
-     */
-    private $period;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -120,28 +110,11 @@ class Season
         return $this->increase;
     }
 
-    /**
-     * Set period
-     *
-     * @param \stdClass $period
-     *
-     * @return Season
-     */
-    public function setPeriod($period)
+    function __toString()
     {
-        $this->period = $period;
-
-        return $this;
+        return $this->name;
     }
 
-    /**
-     * Get period
-     *
-     * @return \stdClass
-     */
-    public function getPeriod()
-    {
-        return $this->period;
-    }
+
 }
 

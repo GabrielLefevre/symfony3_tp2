@@ -2,7 +2,7 @@
 
 namespace ReservationBundle\Form;
 
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -18,13 +18,7 @@ class SeasonType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('increase')
-            ->add('period', EntityType::class, array('class'=>'ReservationBundle:Period', 'multiple'=>true, 'expanded' => true));
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
-            $form = $event->getForm();
-            $season = $event->getData();
-        });
-
+            ->add('increase');
     }
     
     /**
@@ -47,3 +41,16 @@ class SeasonType extends AbstractType
 
 
 }
+
+
+
+/*
+ *                 'query_builder' => function(EntityRepository $er) {
+                  return $er->createQueryBuilder('')
+                },
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
+            $form = $event->getForm();
+            $season = $event->getData();
+        }
+ */

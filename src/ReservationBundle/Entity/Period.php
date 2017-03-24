@@ -47,6 +47,13 @@ class Period
     private $end;
 
     /**
+     *
+     *@ORM\ManyToOne(targetEntity="Season")
+     * @ORM\JoinColumn(name="season_id", referencedColumnName="id")
+     */
+    private $season;
+
+    /**
      * Get id
      *
      * @return int
@@ -104,9 +111,27 @@ class Period
         return $this->end;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getSeason()
+    {
+        return $this->season;
+    }
+
+    /**
+     * @param mixed $season
+     */
+    public function setSeason($season)
+    {
+        $this->season = $season;
+    }
+
+
+
     function __toString()
     {
-        return $this->start->format('Y/m/d')." - ".$this->end->format('Y/m/d')." ";
+        return $this->start->format('Y/m/d')." - ".$this->end->format('Y/m/d')." ".$this->season->getName()." ";
     }
 
 }

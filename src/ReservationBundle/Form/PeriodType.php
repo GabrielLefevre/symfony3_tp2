@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class PeriodType extends AbstractType
 {
@@ -20,7 +21,9 @@ class PeriodType extends AbstractType
             ))
             ->add('end', DateTimeType::class, array(
                 'widget' => 'choice',
-            ));
+            ))
+        ->add('season', EntityType::class, array(
+        'class'=>'ReservationBundle:Season', 'choice_label' => 'name'));
     }
     
     /**

@@ -10,4 +10,5 @@ namespace ReservationBundle\Repository;
  */
 class SeasonRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

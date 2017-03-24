@@ -13,6 +13,10 @@
             <td>End:</td>
             <td>{{ period.end|date('Y/m/d H:i') }}</td>
         </tr>
+        <tr>
+            <td>Season:</td>
+            <td>{{ period.season }}</td>
+        </tr>
     </tbody>
 </table>
 {{ form_start(delete_form) }}

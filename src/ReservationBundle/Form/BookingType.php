@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+
 class BookingType extends AbstractType
 {
     /**
@@ -18,9 +19,7 @@ class BookingType extends AbstractType
             ->add('datestart')
             ->add('package', EntityType::class, array(
                 'class' => 'ReservationBundle:Package'
-         ));
-
-        // WIP summation
+            ));
     }
     
     /**
