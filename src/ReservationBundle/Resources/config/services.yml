@@ -44,11 +44,11 @@ services:
             - { name: kernel.event_subscriber }
 #VALIDATOR
     app.datestartend_validator:
-        class: Reservation\Validator\Constraints\DateStartEndValidator
+        class: ReservationBunlde\Validator\Constraints\DateStartEndValidator
         tags:
             - { name: validator.constraint_validator }
     app.period_validator:
-        class: Reservation\Validator\Constraints\PeriodValidator
+        class: ReservationBundle\Validator\Constraints\PeriodValidator
         arguments:
             - '@doctrine.orm.entity_manager'
         tags:

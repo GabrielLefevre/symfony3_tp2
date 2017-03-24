@@ -5,6 +5,8 @@ namespace ReservationBundle\Form;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SeasonType extends AbstractType
@@ -18,6 +20,11 @@ class SeasonType extends AbstractType
             ->add('name')
             ->add('increase')
             ->add('period', EntityType::class, array('class'=>'ReservationBundle:Period', 'multiple'=>true, 'expanded' => true));
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
+            $form = $event->getForm();
+            $season = $event->getData();
+        });
+
     }
     
     /**

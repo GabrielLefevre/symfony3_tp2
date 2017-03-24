@@ -106,7 +106,7 @@ class Period
 
     function __toString()
     {
-        return $this->start->format('Y/m/d')."   ".$this->end->format('Y/m/d')." ";
+        return $this->start->format('Y/m/d')." - ".$this->end->format('Y/m/d')." ";
     }
 
 }

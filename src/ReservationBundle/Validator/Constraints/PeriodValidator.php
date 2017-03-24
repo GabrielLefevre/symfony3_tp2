@@ -27,6 +27,7 @@ class PeriodValidator extends ConstraintValidator
         for( $i=0; $i<count($allPeriod);$i++) {
             if ($value->getStart() >= $allPeriod[$i]->getStart() && $value->getStart() <= $allPeriod[$i]->getEnd() || $value->getEnd() >= $allPeriod[$i]->getStart() && $value->getEnd() <= $allPeriod[$i]->getEnd() || $allPeriod[$i]->getStart() >= $value->getStart() && $allPeriod[$i]->getStart() <= $value->getEnd() || $allPeriod[$i]->getEnd() >= $value->getStart() && $allPeriod[$i]->getEnd()<= $value->getEnd()) {
                 $this->context->buildViolation($constraint->message)
+                    ->setParameter('%debut%', $allPeriod[$i])
                     ->addViolation();
             } // if
         } // for

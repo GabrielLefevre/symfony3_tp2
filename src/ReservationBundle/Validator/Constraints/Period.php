@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class Period extends Constraint
 {
-    public $message = 'Vous avez déjà une ou plusieurs période qui se superposent avec celle ci ! ';
+    public $message = 'une de vos période (%debut%) est déjà defini sur cette plage de date. ';
 
     public function validatedBy()
     {
