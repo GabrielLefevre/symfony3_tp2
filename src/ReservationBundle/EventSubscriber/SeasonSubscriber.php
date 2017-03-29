@@ -33,6 +33,8 @@ class SeasonSubscriber implements EventSubscriberInterface
     }
 
     public function seasonAdd (SeasonEvent $event) {
+        $increase = $event->getIncrease();
+        $event->setIncrease($this->convertIncrease());
         $this->em->persist($event->getSeason());
         $this->em->flush();
     }
@@ -40,6 +42,10 @@ class SeasonSubscriber implements EventSubscriberInterface
     public function seasonDelete( SeasonEvent $event) {
         $this->em->remove($event->getSeason());
         $this->em->flush($event->getSeason());
+    }
+
+    private function convertIncrease($increase) {
+        return ($increase/100+1);
     }
 
 }

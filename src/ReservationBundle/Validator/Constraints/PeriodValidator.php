@@ -39,12 +39,12 @@ class PeriodValidator extends ConstraintValidator
     public function validDate(array $allPeriod, Period $currentPeriod) {
         foreach( $allPeriod as $period ) {
             $this->period = $period;
-          if($this->dateInPeriod($currentPeriod->getStart(), $period ) ||
-              $this->dateInPeriod($currentPeriod->getEnd(), $period ) ) {
+          if($this->dateInPeriod($currentPeriod->getStart(), $period ) === false ||
+              $this->dateInPeriod($currentPeriod->getEnd(), $period ) === false ) {
               return false;
           }
-            if($this->dateInPeriod($period, $currentPeriod->getStart() ) ||
-                $this->dateInPeriod($period, $currentPeriod->getEnd()) ) {
+            if($this->periodStartInDate($period, $currentPeriod ) === false &&
+                $this->periodEndInDate($period, $currentPeriod) === false ) {
                 return false;
             }
         } // for
@@ -58,6 +58,20 @@ class PeriodValidator extends ConstraintValidator
         return true;
     }
 
+    private function periodStartInDate(Period $period, Period $currentPeriod ) {
+        if ($currentPeriod->getStart() <= $period->getStart() && $currentPeriod->getStart() <= $period->getEnd()) {
+            return false;
+        }
+        return true;
+    }
+
+    private function periodEndInDate(Period $period, Period $currentPeriod ) {
+        if ($currentPeriod->getEnd() >= $period->getStart() && $currentPeriod->getEnd() >= $period->getEnd()) {
+            return false;
+        }
+        return true;
+    }
+
 
 }
 
@@ -66,4 +80,5 @@ class PeriodValidator extends ConstraintValidator
  *  $currentPeriod->getEnd() >= $allPeriod[$i]->getStart() && $currentPeriod->getEnd() <= $allPeriod[$i]->getEnd()
  *  $allPeriod[$i]->getStart() >= $currentPeriod->getStart() && $allPeriod[$i]->getStart() <= $currentPeriod->getEnd()
  * $allPeriod[$i]->getEnd() >= $currentPeriod->getStart() && $allPeriod[$i]->getEnd()<= $currentPeriod->getEnd()
+ *
  */

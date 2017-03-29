@@ -53,3 +53,9 @@ services:
             - '@doctrine.orm.entity_manager'
         tags:
             - { name: validator.constraint_validator }
+    app.booking_validator:
+        class: ReservationBundle\Validator\Constraints\BookingValidator
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: validator.constraint_validator }

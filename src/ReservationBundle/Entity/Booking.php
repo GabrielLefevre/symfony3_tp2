@@ -4,12 +4,15 @@ namespace ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ReservationBundle\Validator\Constraints as BookingAssert;
 
 /**
  * Booking
  *
  * @ORM\Table(name="booking")
  * @ORM\Entity(repositoryClass="ReservationBundle\Repository\BookingRepository")
+ *
+ * @BookingAssert\Booking
  */
 class Booking
 {

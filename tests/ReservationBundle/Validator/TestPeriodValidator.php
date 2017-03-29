@@ -71,9 +71,6 @@ class TestPeriodValidator extends WebTestCase
     } // testValidDateDepartCourantComprisEntreDateDepartDateFin
 
 
-
-
-
     public function testValidDateFinCourantComprisEntreDateDepartDateFin() {
        $mokEm = $this->mokEm();
         $periodValidator = new PeriodValidator($mokEm);
@@ -104,6 +101,48 @@ class TestPeriodValidator extends WebTestCase
         $this->assertEquals(false,$result);
     }
 
+    public function testValidDateFinComprisEntreDateDepartcourantDateFinCourant() {
+        $mokEm = $this->mokEm();
+        $periodValidator = new PeriodValidator($mokEm);
+        $mokPeriodCourante = $this->mokerPeriod('2017-01-15', '2017-01-25');
+        $mokPeriod1 = $this->mokerPeriod('2017-01-18','2017-01-26');
+        $mokPeriod2 = $this->mokerPeriod('2017-01-28','2017-01-30');
+        $tabPeriods = array();
+        array_push($tabPeriods, $mokPeriod1,$mokPeriod2);
+
+        $result = $periodValidator->validDate($tabPeriods, $mokPeriodCourante);
+
+        $this->assertEquals(false,$result);
+    }
+
+    public function testPeriodCourantEnglobePeriod1() {
+        $mokEm = $this->mokEm();
+        $periodValidator = new PeriodValidator($mokEm);
+        $mokPeriodCourante = $this->mokerPeriod('2017-01-05', '2017-01-29');
+        $mokPeriod1 = $this->mokerPeriod('2017-01-06','2017-01-25');
+        $mokPeriod2 = $this->mokerPeriod('2017-02-25','2017-02-30');
+        $tabPeriods = array();
+        array_push($tabPeriods, $mokPeriod1,$mokPeriod2);
+
+        $result = $periodValidator->validDate($tabPeriods, $mokPeriodCourante);
+
+        $this->assertEquals(false,$result);
+    }
+
+    public function testPeriodCourantEnglobePeriod2() {
+        $mokEm = $this->mokEm();
+        $periodValidator = new PeriodValidator($mokEm);
+        $mokPeriodCourante = $this->mokerPeriod('2017-01-05', '2017-01-29');
+        $mokPeriod1 = $this->mokerPeriod('2017-01-01','2017-01-04');
+        $mokPeriod2 = $this->mokerPeriod('2017-01-12','2017-01-27');
+        $tabPeriods = array();
+        array_push($tabPeriods, $mokPeriod1,$mokPeriod2);
+
+        $result = $periodValidator->validDate($tabPeriods, $mokPeriodCourante);
+
+        $this->assertEquals(false,$result);
+    }
+
     public function testValidDateOK() {
         $mokEm = $this->mokEm();
         $periodValidator = new PeriodValidator($mokEm);
@@ -115,7 +154,7 @@ class TestPeriodValidator extends WebTestCase
 
         $result = $periodValidator->validDate($tabPeriods, $mokPeriodCourante);
 
-        $this->assertEquals(false,$result);
+        $this->assertEquals(true,$result);
     }
 
     private function mokerPeriod( $date1,  $date2) {

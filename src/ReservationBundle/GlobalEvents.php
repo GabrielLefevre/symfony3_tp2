@@ -23,8 +23,8 @@ class GlobalEvents
     const PACKAGE_EDIT = 'app.event.package.edit';
     const PACKAGE_DELETE = 'app.event.package.delete';
 
-    const BOOKING_ADD = 'app.event.package.add';
-    const BOOKING_EDIT = 'app.event.package.edit';
-    const BOOKING_DELETE = 'app.event.package.delete';
+    const BOOKING_ADD = 'app.event.booking.add';
+    const BOOKING_EDIT = 'app.event.booking.edit';
+    const BOOKING_DELETE = 'app.event.booking.delete';
 
 }
